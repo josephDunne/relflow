@@ -110,7 +110,7 @@ changed_modules_since(Rev) when is_list(Rev) ->
                 %% directories where OTP applications for the project can be located
                 %% {project_app_dirs, ["apps", "lib", "."]}.
                 case filename:split(Path) of
-                    ["apps", AppName, "src" | _] ->
+                    ["apps", AppName | _] ->
                         {AppName, Module, ModInfo};
 
                     ["src" | _] ->
@@ -148,5 +148,3 @@ gather_changed_modules([{AppName, Filename, ModInfo} | Rest], Acc) ->
     gather_changed_modules(Rest, [{AppName, [{Filename, ModInfo}]}|Acc]);
 gather_changed_modules([], Acc) ->
     Acc.
-
-
